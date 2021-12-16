@@ -1,15 +1,16 @@
 import check50
-import check50.c
+import check50.rust
+import os
 
 @check50.check()
 def exists():
-    """hello.c exists"""
-    check50.exists("hello.c")
+    """main.rs exists"""
+    check50.exists("src/main.rs")
 
 @check50.check(exists)
 def compiles():
-    """hello.c compiles"""
-    check50.c.compile("hello.c", lcs50=True)
+    """main.rs compiles"""
+    check50.rust.compile()
 
 @check50.check(compiles)
 def emma():
