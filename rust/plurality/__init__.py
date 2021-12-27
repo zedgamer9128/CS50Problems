@@ -1,6 +1,7 @@
 import check50
 import check50.rust
 import re
+import os
 
 @check50.check()
 def exists():
@@ -12,21 +13,22 @@ def exists():
 @check50.check(exists)
 def compiles():
     """plurality compiles"""
-    check50.rust.compile()
     # rename main.rs
-    plurality = open("src/main.rs").read()
+    os.rename("src/main.rs", "src/main_bak.rs")
+    plurality = open("src/main_bak.rs").read()
     testing = open("test.rs").read()
     with open("src/main.rs", "w") as f:
         f.write(plurality)
         f.write("\n")
         f.write(testing)
+    print(check50.run("ls").stdout())
     check50.rust.compile()
 
 @check50.check(compiles)
 @check50.hidden("vote function did not return true")
 def vote_finds_name_first():
     """vote returns true when given name of first candidate"""
-    check50.run("cargo test test_vote -- 0 0").stdout("true").exit(0)
+    check50.run("cargo test test_vote -- 0 0").exit(0)
 
 @check50.check(compiles)
 @check50.hidden("vote function did not return true")
