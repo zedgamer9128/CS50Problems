@@ -32,7 +32,7 @@ def vote_finds_name_first():
 @check50.hidden("vote function did not return true")
 def vote_finds_name_middle():
     """vote returns true when given name of middle candidate"""
-    check50.run("cargo test test_vote -- 0 1").stdout("true").exit(0)
+    check50.run("cargo test test_vote -- 0 1").exit(0)
 
 @check50.check(compiles)
 @check50.hidden("vote function did not return true")
