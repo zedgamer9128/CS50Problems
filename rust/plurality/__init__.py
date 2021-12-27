@@ -1,7 +1,5 @@
 import check50
 import check50.rust
-import re
-import os
 
 @check50.check()
 def exists():
@@ -14,14 +12,10 @@ def exists():
 def compiles():
     """plurality compiles"""
     # rename main.rs
-    os.rename("src/main.rs", "src/main_bak.rs")
-    plurality = open("src/main_bak.rs").read()
     testing = open("test.rs").read()
-    with open("src/main.rs", "w") as f:
-        f.write(plurality)
+    with open("src/main.rs", "a") as f:
         f.write("\n")
         f.write(testing)
-    print(check50.run("ls").stdout())
     check50.rust.compile()
 
 @check50.check(compiles)
