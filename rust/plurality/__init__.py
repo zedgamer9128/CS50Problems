@@ -16,7 +16,7 @@ def compiles():
     # rename main.rs
     plurality = open("src/main.rs").read()
     testing = open("test.rs").read()
-    with open("main.rs", "w") as f:
+    with open("src/main.rs", "w") as f:
         f.write(plurality)
         f.write("\n")
         f.write(testing)
